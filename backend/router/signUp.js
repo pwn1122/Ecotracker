@@ -1,12 +1,12 @@
 const express = require('express')
 const route = express.Router()
-const user = require('../model/singUp')
+const user = require('../models/signUp')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const secret = 'QW!@AsZxer1%4#T^&*FCDT65$$#*)_+[[p;[]L>"}'
 // const app =  express()
 
-route.post('/sign', async (req, res) => {
+route.post('/register', async (req, res) => {
     const data = req.body
     try {
         const salt = await bcrypt.genSalt()
