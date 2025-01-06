@@ -137,15 +137,14 @@ function SignUp() {
   const [visibility, setVisibility] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    
+  useEffect(() => { 
     const timer = setTimeout(() => {
       document.querySelector('.sign-up-container').classList.add('fade-in');
     }, 100);
 
     return () => clearTimeout(timer);
   }, []);
-
+ console.log(formData)
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('http://localhost:4000/register', {
