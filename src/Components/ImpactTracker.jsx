@@ -79,11 +79,8 @@
 
 
 
-
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
 
 const EcoTracker = () => {
   const [ecoPoints, setEcoPoints] = useState(120);
@@ -93,8 +90,8 @@ const EcoTracker = () => {
     { name: "You", points: 120 },
     { name: "Charlie", points: 110 },
   ]);
+  
   const [completedChallenges, setCompletedChallenges] = useState({});
-
   const challenges = [
     {
       id: 1,

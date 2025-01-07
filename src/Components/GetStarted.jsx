@@ -5,7 +5,6 @@ import ImpactTracker from "./ImpactTracker.jsx";
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
 
-
 function GetStarted() {
   return (
     <div>

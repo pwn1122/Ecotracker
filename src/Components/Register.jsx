@@ -1,128 +1,3 @@
-// // import React,{useState} from 'react'
-// // import axios from 'axios';
-
-
-// // function Register() {
-
-// //     const [ user , setUser] = useState({
-// //         username : '',
-// //         email : '',
-// //         password: '',
-// //         confirmPassword:''
-// //       })
-        
-// //         const handleSubmit = (e) => {
-// //             e.preventDefault();
-
-// //             // console.log({ username, email, password });
-// //         };
-
-// //         const userdata = () => {
-
-// //             const { username , email , password , confirmPassword } = user
-// //             if( username && email && password &&( password === confirmPassword )){
-            
-// //                 axios.post("localhost:4000/register" , user) 
-// //                 .then( res => console.log(res))
-                
-// //             }
-
-// //             else{
-// //                 alert("invalid input")
-// //             }
-
-// //         }
-
-// //         const handleChange = e =>{
-// //             const {id , value} = e.target 
-// //             setUser({
-// //                 ...user,[id]: value
-// //             })
-// //         }
-// //   return (
-// //     <div>
-// //             <div className="min-h-screen flex items-center justify-center bg-gray-100">
-// //                     <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-// //                         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
-                        
-// //                         <form onSubmit={handleSubmit}>
-// //                             <div className="mb-4">
-// //                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-// //                                     Username
-// //                                 </label>
-// //                                 <input
-// //                                     type="text"
-// //                                     id="username"
-// //                                     value={user.username}
-// //                                     onChange={handleChange}
-// //                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-// //                                     required
-// //                                 />
-// //                             </div>
-// //                             <div className="mb-4">
-// //                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-// //                                     Email
-// //                                 </label>
-// //                                 <input
-// //                                     type="email"
-// //                                     id="email"
-// //                                     value={user.email}
-// //                                     onChange={handleChange}
-// //                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-// //                                     required
-// //                                 />
-// //                             </div>
-// //                             <div className="mb-4">
-// //                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-// //                                     Password
-// //                                 </label>
-// //                                 <input
-// //                                     type="password"
-// //                                     id="password"
-// //                                     value={user.password}
-// //                                     onChange={handleChange}
-// //                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-// //                                     required
-// //                                 />
-// //                             </div>
-// //                             <div className="mb-6">
-// //                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-// //                                     Confirm Password
-// //                                 </label>
-// //                                 <input
-// //                                     type="password"
-// //                                     id="confirmPassword"
-// //                                     value={user.confirmPassword}
-// //                                     onChange={handleChange} 
-// //                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-// //                                     required
-// //                                 />
-// //                             </div>
-// //                             <div className="flex items-center justify-between">
-// //                                 <button
-// //                                     onClick={userdata}
-// //                                     type="submit"
-// //                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-// //                                 >
-// //                                     Register
-// //                                 </button>
-// //                             </div>
-// //                         </form>
-// //                     </div>
-// //                 </div>
-// //     </div>
-// //   )
-// // }
-
-// // export default Register
-
-
-
-
-
-
-
-
 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -144,7 +19,7 @@ function SignUp() {
 
     return () => clearTimeout(timer);
   }, []);
- console.log(formData)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('http://localhost:4000/register', {
@@ -163,7 +38,7 @@ function SignUp() {
         }
         return user;
       })
-      .then((data) => console.log(data))
+      .then((data) => alert(data.error))
       .catch((err) => console.log(err));
   };
 

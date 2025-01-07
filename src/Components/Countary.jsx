@@ -205,8 +205,6 @@ const countriesData = [
   
   ];
   
-
-
 export default function Countries() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCountry, setSelectedCountry] = useState(null);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import Header from "./Components/Header.jsx";
 import Dashboard from "./Components/Dashboard.jsx";
 import Map from "./Components/Map.jsx";
@@ -8,7 +8,8 @@ import Navbar from "./Components/Navbar.jsx";
 import Climate from "./Components/Climate.jsx";
 import Countries from "./Components/Countary.jsx";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // import AOS CSS
+import 'aos/dist/aos.css'; 
+
 
 function App() {
   useEffect(() => {
@@ -20,8 +21,45 @@ function App() {
       delay: 200, // delay before the animation starts
     });
   }, []);
+  const navigate  = useNavigate()
+
+  useEffect(() => {
+    async function check() {
+      const resp = await fetch('http://localhost:4000/check', {
+        credentials: 'include'
+      })
+      if(resp.ok == false) {
+        navigate('/login')
+      }
+    }
+    check()
+
+  },[])
+
+
+
+  // const handlelogout = async() =>{
+  //   try{
+  //     const res = await fetch('http://localhost:4000/logout', {
+  //       credentials: "include"
+  //     });
+
+  //     if(res.ok){
+  //       navigate('/login')
+  //     }
+  //     else{
+  //       alert('there is some issue try again later')
+  //     }
+  //   }
+  //   catch(err){
+  //     alert('there is some internal issue try again later')
+  //   }
+  // }
+
 
   return (
+    
+
     <div>
       <Navbar />
       
@@ -31,7 +69,7 @@ function App() {
         style={{ backgroundImage: "url('/img/coal.jpg')" }}
         data-aos="fade-down" // Changed to fade-down
         data-aos-delay="300" // Delay for this specific section
-      >
+        >
          <h1 className="text-5xl text-yellow-200 p-4 font-bold">EcoTrack Adventures</h1>
         <h1 className="text-4xl md:text-4xl font-bold mb-4">
           Make Every Green Action Count!
@@ -48,8 +86,6 @@ function App() {
         </Link>
       </section>
 
-  
-
       <div className="bg-gray-100 min-h-screen flex flex-col">
         <Climate data-aos="fade-down" data-aos-duration="1500" />
         <Header data-aos="fade-down" data-aos-duration="1500" />
@@ -65,6 +101,7 @@ function App() {
     </div>
   );
 }
+        
 
 export default App;
 

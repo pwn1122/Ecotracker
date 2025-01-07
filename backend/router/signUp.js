@@ -51,6 +51,7 @@ route.post('/login', async (req, res) => {
 
 route.get('/check', async (req, res) => {
     const token = req.cookies.jwt
+    
     if (!token) {
         return res.status(401).json({ error: "invalid" })
     }

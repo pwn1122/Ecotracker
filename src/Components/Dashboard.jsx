@@ -1,8 +1,5 @@
 
-
-
 import React, { useEffect, useState } from 'react';
-
 
 function Dashboard() {
   const api_key = '4aec3731eaa36c81c257c4f1103248ff';
