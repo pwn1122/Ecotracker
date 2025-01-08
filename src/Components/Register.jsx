@@ -9,7 +9,8 @@ function SignUp() {
     email: '',
     password: '',
   });
-  const [visibility, setVisibility] = useState(true);
+  const [visibility, setVisibility] = useState(true); // For toggling password visibility
+  const [successMessage, setSuccessMessage] = useState(''); // New state for success message
   const navigate = useNavigate();
 
   useEffect(() => { 
@@ -22,6 +23,13 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Ensure all fields are filled before submitting
+    if (!formData.name || !formData.email || !formData.phoneNumber || !formData.password) {
+      alert("Please fill in all fields");
+      return;
+    }
+
     fetch('http://localhost:4000/register', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -30,16 +38,22 @@ function SignUp() {
       },
       credentials: 'include',
     })
-      .then((res) => {
-        const user = res.json();
-        if (res.ok) {
+      .then((res) => res.json())  // Wait for JSON response
+      .then((user) => {
+        if (user && user._id) {  // Check if user data exists and has _id
           localStorage.setItem('myID', user._id);
-          navigate('/');
+          setSuccessMessage('User registered successfully!');  // Set success message
+          setTimeout(() => {
+            navigate('/login');  // Navigate to login after showing the message
+          }, 1000);  // Show the success message for 1 seconds
+        } else {
+          alert(user?.error || "An error occurred");
         }
-        return user;
       })
-      .then((data) => alert(data.error))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.error('Error during signup:', err);
+        alert("An error occurred during signup");
+      });
   };
 
   const handleChange = (e) => {
@@ -47,7 +61,7 @@ function SignUp() {
   };
 
   const handleClose = () => {
-    navigate('/'); 
+    navigate('/login');
   };
 
   return (
@@ -57,14 +71,20 @@ function SignUp() {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold text-center">Create Account</h1>
         <button
-  onClick={handleClose}
-  className="bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900 p-2 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition duration-200 ease-in-out"
-  aria-label="Close"
->
-  &times;
-</button>
-
+          onClick={handleClose}
+          className="bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900 p-2 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition duration-200 ease-in-out"
+          aria-label="Close"
+        >
+          &times;
+        </button>
       </div>
+
+      {successMessage && (
+        <div className="mb-4 text-center text-green-500">
+          {successMessage} {/* Display success message */}
+        </div>
+      )}
+
       <p className="text-center mb-6">
         Already have an account?{' '}
         <Link to={'/login'} className="text-blue-500">
@@ -106,12 +126,14 @@ function SignUp() {
           />
         </div>
         <div className="mb-4 relative">
-          <span
-            className="material-symbols-outlined cursor-pointer absolute right-2 top-3"
-            onClick={() => setVisibility(!visibility)}
-          >
-            {visibility ? 'visibility' : 'visibility_off'}
-          </span>
+
+           <span
+               className="cursor-pointer absolute right-2 top-3"
+               onClick={() => setVisibility(!visibility)}
+               >
+               {visibility ? <i className="fas fa-eye"></i> : <i className="fas fa-eye-slash"></i>}
+           </span>
+
           <input
             type={visibility ? 'password' : 'text'}
             id="password"

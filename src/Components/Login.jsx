@@ -1,11 +1,15 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+export let data
 
 function Login() {
+  
   const [loginData, setLoginData] = useState({ email: "", password: "" })
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
+
+  
 
   const handleSubmit = async (e) => {
     loginData.rememberMe = rememberMe
@@ -19,9 +23,9 @@ function Login() {
         },
         credentials: 'include'
       })
-      const user = await res.json()
+       data = await res.json()
       if (res.ok) {
-        localStorage.setItem("myID", user._id)
+        localStorage.setItem("myID", data._id)
         navigate('/') 
       }
     } catch (err) {

@@ -1,10 +1,16 @@
 const express = require('express')
 const route = express.Router()
+const router = express.Router();
 const user = require('../models/signUp')
 const bcrypt = require('bcrypt')
+const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken')
 const secret = 'QW!@AsZxer1%4#T^&*FCDT65$$#*)_+[[p;[]L>"}'
-// const app =  express()
+
+
+
+
+
 
 route.post('/register', async (req, res) => {
     const data = req.body
@@ -31,6 +37,7 @@ route.post('/login', async (req, res) => {
     const data = req.body
     try {
         const find = await user.findOne({ email: data.email })
+        console.log(find)
         if (!find) {
             return res.status(401).json({ error: "invalid Email or password " })
         }
@@ -66,10 +73,13 @@ route.get('/check', async (req, res) => {
         }
     } catch (error) {
         res.status(401).json({ error: 'invalid token' })
-        // console.log(error)
+      
     }
 
 })
+
+
+
 route.get('/logout', async (req, res) => {
     const token = req.cookies.jwt
     if (token) {
@@ -81,4 +91,5 @@ route.get('/logout', async (req, res) => {
     }
 })
 
+  
 module.exports = route;
