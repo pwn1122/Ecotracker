@@ -61,7 +61,7 @@ function Navbar() {
     <div>
       {/* Navbar */}
       <nav
-        className={`fixed top-0 left-0 w-full bg-green-500 text-white p-4 flex items-center justify-between space-x-6 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full bg-green-500 text-white p-4 flex items-center justify-between space-x-6 z-50 transition-all duration-300 ${
           isScrolled ? "h-20" : "h-16"
         }`} // Dynamic height change on scroll
       >

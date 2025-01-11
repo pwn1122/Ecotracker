@@ -7,6 +7,7 @@ import Footer from "./Components/Footer.jsx";
 import Navbar from "./Components/Navbar.jsx";
 import Climate from "./Components/Climate.jsx";
 import Countries from "./Components/Countary.jsx";
+
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 
@@ -37,29 +38,8 @@ function App() {
   },[])
 
 
-
-  // const handlelogout = async() =>{
-  //   try{
-  //     const res = await fetch('http://localhost:4000/logout', {
-  //       credentials: "include"
-  //     });
-
-  //     if(res.ok){
-  //       navigate('/login')
-  //     }
-  //     else{
-  //       alert('there is some issue try again later')
-  //     }
-  //   }
-  //   catch(err){
-  //     alert('there is some internal issue try again later')
-  //   }
-  // }
-
-
   return (
     
-
     <div>
       <Navbar />
       
@@ -94,6 +74,8 @@ function App() {
           <Dashboard data-aos="fade-down" data-aos-duration="1200" data-aos-delay="100" />
           <Map data-aos="zoom-in" data-aos-duration="1200" />
           <Countries data-aos="fade-left" data-aos-duration="1500" />
+
+          
         </main>
         
         <Footer data-aos="fade-down" data-aos-duration="1500" />

@@ -19,6 +19,7 @@ import Ecopoints from './Components/Ecopoints.jsx'
 import ImpactTracker from './Components/ImpactTracker.jsx'
 import GetStarted from './Components/GetStarted.jsx'
 import FindMore from './Components/FindMore.jsx'
+import Profile from './Components/Profile.jsx';
 import './index.css'
 import { BrowserRouter,createBrowserRouter,RouterProvider } from 'react-router-dom'
 

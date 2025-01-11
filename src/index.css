@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Fade-In-Up Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply fadeInUp animation */
+.fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Hover Button Scale Effect */
+.button-hover:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+
+
 .fade-enter {
     opacity: 0;
 }
@@ -39,7 +65,6 @@ body {
 .animate-slide-down {
     animation: slide-down 0.3s ease-in-out;
 }
-
 
 
   /* Fade-in animation for background image */
@@ -187,9 +212,6 @@ body {
 }
 
 
-
-
-
 /* Fade-in animation for images */
 @keyframes fadeIn {
   0% {
@@ -255,10 +277,6 @@ li:nth-child(4) {
 }
 
 
-
-
-
-
 /* Fade-in animation for input fields */
 .fade-in {
   opacity: 0;
@@ -301,11 +319,6 @@ li:nth-child(4) {
 }
 
 
-
-
-
-
-
 /* CSS file for EcoActionTracker */
 
 @keyframes bounce {
@@ -334,8 +347,6 @@ li:nth-child(4) {
   display: inline-block;
   animation: fadeIn 0.5s ease-in-out;
 }
-
-
 
 
 /* Adding keyframes for CSS animations */
@@ -372,9 +383,6 @@ button:hover {
   background-color: #38a169; /* Darker green on hover */
   transition: background-color 0.3s ease;
 }
-
-
-
 
 
 
@@ -486,11 +494,7 @@ button:hover {
   }
 }
 
-
-
-
 /* login animtion */
-
 
 /* Login.css */
 .login-animation {
@@ -538,10 +542,7 @@ button:hover {
   }
 }
 
-
 /* animation for climate component */
-
-
 
 /* In your global CSS file (e.g., styles.css) */
 @keyframes fadeIn {
@@ -571,10 +572,4 @@ button:hover {
 .animate-slideUp {
   animation: slideUp 1s ease-in-out;
 }
-
-
-
-
-
- 
 

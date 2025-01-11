@@ -5,11 +5,7 @@ const user = require('../models/signUp')
 const bcrypt = require('bcrypt')
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken')
-const secret = 'QW!@AsZxer1%4#T^&*FCDT65$$#*)_+[[p;[]L>"}'
-
-
-
-
+const JWT_TOKEN = 'QW!@AsZxer1%4#T^&*FCDT65$$#*)_+[[p;[]L>"}'
 
 
 route.post('/register', async (req, res) => {
@@ -19,7 +15,7 @@ route.post('/register', async (req, res) => {
         const newPassword = await bcrypt.hash(data.password, salt)
         data.password = newPassword
         const newUser = await user.create(data)
-        const token = jwt.sign({ _id: newUser._id }, secret)
+        const token = jwt.sign({ _id: newUser._id }, JWT_TOKEN)
         res.cookie('jwt', token, {
             httpOnly: true,
             maxAge: 15 * 60 * 1000
@@ -37,7 +33,7 @@ route.post('/login', async (req, res) => {
     const data = req.body
     try {
         const find = await user.findOne({ email: data.email })
-        console.log(find)
+        // console.log(find)
         if (!find) {
             return res.status(401).json({ error: "invalid Email or password " })
         }
@@ -45,7 +41,7 @@ route.post('/login', async (req, res) => {
         if (!match) {
             return res.status(401).json({ error: "invalid Email or password " })
         }
-        const token = jwt.sign({ _id: find._id }, secret)
+        const token = jwt.sign({ _id: find._id }, JWT_TOKEN)
         res.cookie('jwt', token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
@@ -63,7 +59,7 @@ route.get('/check', async (req, res) => {
         return res.status(401).json({ error: "invalid" })
     }
     try {
-        const data = await jwt.verify(token, secret)
+        const data = await jwt.verify(token, JWT_TOKEN)
         const user2 = await user.findById(data._id)
         if (user2) {
             res.status(202).json({ message: "ok" })
@@ -77,7 +73,6 @@ route.get('/check', async (req, res) => {
     }
 
 })
-
 
 
 route.get('/logout', async (req, res) => {

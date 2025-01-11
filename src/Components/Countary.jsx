@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-// Country data with names and coordinates
+
 const countriesData = [
     { name: "Afghanistan", coordinates: [33.93911, 67.709953] },
     { name: "Albania", coordinates: [41.153332, 20.168331] },
@@ -299,12 +299,3 @@ const highlightedIcon = new L.Icon({
   iconAnchor: [15, 45], // Anchor point for proper placement
   popupAnchor: [0, -40], // Popup position
 });
-
-
-
-
-
-
-
-
-
